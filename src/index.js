@@ -6,7 +6,7 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 
-const API_KEY = 'AIzaSyABjojdD7ElP80oKjtyyVA_wPpQ7n8RvrQ'; //Youtube search api key 
+const API_KEY = 'XXXX'; //Youtube search api key 
 
 //Create a new Component, this component should produce some html
 class App extends Component { //used new ES6 fat arrow function syntax
