@@ -6,7 +6,7 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 
-const API_KEY = 'XXXX'; //Youtube search api key 
+const API_KEY = 'ZZZZZ'; //Youtube search api key 
 
 //Create a new Component, this component should produce some html
 class App extends Component { //used new ES6 fat arrow function syntax
@@ -16,19 +16,24 @@ class App extends Component { //used new ES6 fat arrow function syntax
             videos: [],
             selectedVideo: null
         };
-        YTSearch({ key: API_KEY, term: 'surfboards'},  (videos) => {
+       this.videoSearch('surfboards');
+    }
+
+    videoSearch(term) {
+        YTSearch({ key: API_KEY, term: term},  (videos) => {
             this.setState({
                 videos: videos,
                 selectedVideo: videos[0]
             });  //same as this.setState({videos: videos});
         });
     }
+
     render(){
         return (
             <div>
-                <SearchBar/>
+                <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
                 <VideoDetail video= {this.state.selectedVideo}/>
-                <VideoList 
+                <VideoList
                 onVideoSelect = {selectedVideo => this.setState({selectedVideo})}
                 videos={this.state.videos} />
             </div>  //<div>Hi!</div> this is JSX; webpack and babel do some transpiling of the code to convert it to html
