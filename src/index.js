@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -6,7 +7,7 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 
-const API_KEY = 'ZZZZZ'; //Youtube search api key 
+const API_KEY = 'ZZZ'; //Youtube search api key 
 
 //Create a new Component, this component should produce some html
 class App extends Component { //used new ES6 fat arrow function syntax
@@ -29,9 +30,11 @@ class App extends Component { //used new ES6 fat arrow function syntax
     }
 
     render(){
+        const videoSearch = _.debounce((term)=> {this.videoSearch(term)}, 300);
+        //debounce will call the inner function once every 300 ms
         return (
             <div>
-                <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+                <SearchBar onSearchTermChange={videoSearch}/>
                 <VideoDetail video= {this.state.selectedVideo}/>
                 <VideoList
                 onVideoSelect = {selectedVideo => this.setState({selectedVideo})}
